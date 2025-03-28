@@ -1,6 +1,7 @@
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
+import 'package:weather_app/utils/hourly_forecast_card.dart';
 
 class WeatherPage extends StatelessWidget {
   const WeatherPage({super.key});
@@ -28,7 +29,7 @@ class WeatherPage extends StatelessWidget {
                 child: ClipRRect(
                   borderRadius: BorderRadius.circular(16),
                   child: BackdropFilter(
-                    filter: ImageFilter.blur(sigmaX: 10, sigmaY:10 ),
+                    filter: ImageFilter.blur(sigmaX: 10, sigmaY: 10),
                     child: Padding(
                       padding: EdgeInsets.all(16),
                       child: Column(
@@ -52,33 +53,27 @@ class WeatherPage extends StatelessWidget {
               ),
             ),
 
-            SizedBox(height: 20,),
+            SizedBox(height: 20),
 
-            Text('Weather Forecast', style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),),
+            Text(
+              'Weather Forecast',
+              style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+            ),
 
-            SizedBox(height: 20,),
+            SizedBox(height: 20),
 
             SingleChildScrollView(
               scrollDirection: Axis.horizontal,
-              child: Row(children: [
-                Card(
-                  shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(14)),
-                  child: Padding(
-                    padding: const EdgeInsets.symmetric(vertical: 8.0, horizontal: 22),
-                    child: Column(crossAxisAlignment: CrossAxisAlignment.center, children: [
-                      SizedBox(height:5),
-                      Text('00:55', style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),),
-                      SizedBox(height: 5,),
-                      Icon(Icons.cloud, size: 30,),
-                      SizedBox(height: 10,),
-                      Text('301.7', style: TextStyle(fontSize: 17),),
-                    ],),
-                  ),
-                ),
-
-
-              ],),
-            )
+              child: Row(
+                children: [
+                  HourlyForecastCard(),
+                  HourlyForecastCard(),
+                  HourlyForecastCard(),
+                  HourlyForecastCard(),
+                  HourlyForecastCard(),
+                ],
+              ),
+            ),
           ],
         ),
       ),
