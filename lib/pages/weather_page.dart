@@ -1,6 +1,6 @@
 import 'dart:ui';
-
 import 'package:flutter/material.dart';
+import 'package:weather_app/utils/additional_info_tile.dart';
 import 'package:weather_app/utils/hourly_forecast_card.dart';
 
 class WeatherPage extends StatelessWidget {
@@ -53,57 +53,77 @@ class WeatherPage extends StatelessWidget {
               ),
             ),
 
-            SizedBox(height: 25),
+            SizedBox(height: 30),
 
             Text(
               'Weather Forecast',
               style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
             ),
 
-            SizedBox(height: 12.5),
+            SizedBox(height: 10),
 
             SingleChildScrollView(
               scrollDirection: Axis.horizontal,
               child: Row(
                 children: [
-                  HourlyForecastCard(),
-                  HourlyForecastCard(),
-                  HourlyForecastCard(),
-                  HourlyForecastCard(),
-                  HourlyForecastCard(),
+                  HourlyForecastCard(
+                    time: '23:23',
+                    icon: Icons.cloud,
+                    temperature: '23',
+                  ),
+                  HourlyForecastCard(
+                    time: '23:23',
+                    icon: Icons.sunny,
+                    temperature: '23',
+                  ),
+                  HourlyForecastCard(
+                    time: '23:23',
+                    icon: Icons.cloud,
+                    temperature: '23',
+                  ),
+                  HourlyForecastCard(
+                    time: '23:23',
+                    icon: Icons.sunny,
+                    temperature: '23',
+                  ),
                 ],
               ),
             ),
 
-            SizedBox(height: 25),
+            SizedBox(height: 30),
 
             Text(
               'Additional Information',
               style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
             ),
 
-            SizedBox(height: 12.5),
+            SizedBox(height: 10),
 
             Row(
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
-                Column(
-                  children: [
-                    Icon(Icons.water_drop, size: 32),
-                    SizedBox(height: 10),
-                    Text('Humidity', style: TextStyle(color: Colors.grey)),
-                    SizedBox(height: 5),
-                    Text(
-                      '94.5',
-                      style: TextStyle(
-                        fontSize: 18,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                  ],
+                AdditionalInfoTile(
+                  icon: Icons.water_drop,
+                  label: 'Humidity',
+                  value: '91.5',
                 ),
 
+                AdditionalInfoTile(
+                  icon: Icons.air,
+                  label: 'Wind Speed',
+                  value: '95',
+                ),
+
+                AdditionalInfoTile(
+                  icon: Icons.beach_access,
+                  label: 'Air Pressure',
+                  value: '100.5',
+                ),
               ],
             ),
+            SizedBox(height:60),
+            Text('Made By Pushkar Jadhav'),
+            Text('(^_^)'),
           ],
         ),
       ),
