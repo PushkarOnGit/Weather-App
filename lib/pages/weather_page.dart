@@ -53,14 +53,14 @@ class WeatherPage extends StatelessWidget {
               ),
             ),
 
-            SizedBox(height: 20),
+            SizedBox(height: 25),
 
             Text(
               'Weather Forecast',
               style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
             ),
 
-            SizedBox(height: 20),
+            SizedBox(height: 12.5),
 
             SingleChildScrollView(
               scrollDirection: Axis.horizontal,
@@ -73,6 +73,36 @@ class WeatherPage extends StatelessWidget {
                   HourlyForecastCard(),
                 ],
               ),
+            ),
+
+            SizedBox(height: 25),
+
+            Text(
+              'Additional Information',
+              style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+            ),
+
+            SizedBox(height: 12.5),
+
+            Row(
+              children: [
+                Column(
+                  children: [
+                    Icon(Icons.water_drop, size: 32),
+                    SizedBox(height: 10),
+                    Text('Humidity', style: TextStyle(color: Colors.grey)),
+                    SizedBox(height: 5),
+                    Text(
+                      '94.5',
+                      style: TextStyle(
+                        fontSize: 18,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                  ],
+                ),
+
+              ],
             ),
           ],
         ),
