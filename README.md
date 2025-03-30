@@ -3,7 +3,7 @@
 A Weather Reporting App made using Flutter! ✨
 
 # Features
-Shows Current Temperature adn Weather Conditions <br>
+Shows Current Temperature and Weather Conditions <br>
 Shows Hourly Weather Forecast<br>
 Can be refresed time to time <br>
 It uses http and intl to do its respective tasks<br>
