@@ -15,13 +15,13 @@ class WeatherPage extends StatefulWidget {
 
 class _WeatherPageState extends State<WeatherPage> {
   final String cityName = 'Nagpur';
-  final String api_key = 'ea374b9bce7438cebb9a93780fbcf918';
+  final String apiKey = 'ea374b9bce7438cebb9a93780fbcf918';
 
   Future<Map<String, dynamic>> getCurrentWeather() async {
     try {
       final response = await http.get(
         Uri.parse(
-          "http://api.openweathermap.org/data/2.5/forecast?q=$cityName&APPID=$api_key",
+          "http://api.openweathermap.org/data/2.5/forecast?q=$cityName&APPID=$apiKey",
         ),
       );
 
