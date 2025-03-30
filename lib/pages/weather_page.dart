@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'dart:io';
 import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
@@ -28,11 +29,15 @@ class _WeatherPageState extends State<WeatherPage> {
       final data = jsonDecode(response.body);
 
       if (data['cod'] != '200') {
-        throw 'An unexpected error occured';
+        throw 'An unexpected error occurred';
       }
+
 
       return data;
     } catch (e) {
+      if (e is http.ClientException || e is SocketException){
+        throw "You're offline";
+      }
       throw e.toString();
     }
   }
