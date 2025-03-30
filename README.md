@@ -3,13 +3,13 @@
 A Weather Reporting App made using Flutter! ✨
 
 # Features
-Shows Current Temperature adn Weather Conditions 
-Shows Hourly Weather Forecast
-Can be refresed time to time 
-It uses http and intl to do its respective tasks
+Shows Current Temperature adn Weather Conditions <br>
+Shows Hourly Weather Forecast<br>
+Can be refresed time to time <br>
+It uses http and intl to do its respective tasks<br>
 
-# how to use 
-Add all the dependencies 
-Then use your API Key of OpenWeather and enter your City Name as per requremements!
+# Steps to use this app  
+Add all the dependencies <br>
+Then use your API Key of OpenWeather and enter your City Name as per requremements!<br>
 
 # Till then... Happy Fluttering Around!
