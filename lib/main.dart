@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:weather_app/pages/weather_page.dart';
+import 'package:weather_app/weather_page.dart';
 
 void main() {
-  runApp(MyApp());
+  runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {
@@ -11,12 +11,9 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Weather App',
-      home: WeatherPage(),
-      theme: ThemeData.light(useMaterial3: true),
-      darkTheme: ThemeData.dark(useMaterial3: true),
-      themeMode: ThemeMode.system,
       debugShowCheckedModeBanner: false,
+      theme: ThemeData.dark(),
+      home: const WeatherPage(),
     );
   }
 }
