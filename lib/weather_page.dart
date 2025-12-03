@@ -1,5 +1,4 @@
 import 'dart:ui';
-
 import 'package:flutter/material.dart';
 
 class WeatherPage extends StatefulWidget {
@@ -18,12 +17,13 @@ class WeatherPageState extends State<WeatherPage> {
         centerTitle: true,
         actions: [IconButton(onPressed: () {}, icon: Icon(Icons.refresh))],
       ),
-      body: Column(
-        children: [
-          //CARD
-          Padding(
-            padding: const EdgeInsets.symmetric(vertical: 10.0, horizontal: 16),
-            child: SizedBox(
+      body: Padding(
+        padding: const EdgeInsets.symmetric(vertical: 10.0, horizontal: 16),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            //CARD
+            SizedBox(
               width: double.infinity,
               child: Card(
                 elevation: 10,
@@ -51,10 +51,64 @@ class WeatherPageState extends State<WeatherPage> {
                 ),
               ),
             ),
-          ),
 
-          SizedBox(height: 20),
-        ],
+            SizedBox(height: 20),
+
+            Text(
+              'Weather Forecast',
+              style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+            ),
+
+            SizedBox(height: 10),
+            SingleChildScrollView(
+              scrollDirection: Axis.horizontal,
+              child: Row(
+                children: [
+                  HourlyForecastItem(),
+                  HourlyForecastItem(),
+                  HourlyForecastItem(),
+                  HourlyForecastItem(),
+                  HourlyForecastItem(),
+                ],
+              ),
+            ),
+
+            //
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+class HourlyForecastItem extends StatelessWidget {
+  const HourlyForecastItem({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Card(
+      elevation: 6,
+      child: Container(
+        width: 100,
+        padding: EdgeInsets.symmetric(vertical: 10, horizontal: 20),
+        child: Column(
+          children: [
+            // time
+            Text(
+              "13:13",
+              style: TextStyle(fontSize: 17, fontWeight: FontWeight.bold),
+            ),
+
+            SizedBox(height: 5),
+
+            // cloud
+            Icon(Icons.cloud, size: 32),
+
+            SizedBox(height: 12),
+            // temp
+            Text('300°F', style: TextStyle(fontSize: 16)),
+          ],
+        ),
       ),
     );
   }
