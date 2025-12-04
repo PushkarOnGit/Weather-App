@@ -16,7 +16,7 @@ class HourlyForecastItem extends StatelessWidget {
     return Card(
       elevation: 6,
       child: Container(
-        width: 100,
+        width: 110,
         padding: EdgeInsets.symmetric(vertical: 10, horizontal: 20),
         child: Column(
           children: [
@@ -33,7 +33,7 @@ class HourlyForecastItem extends StatelessWidget {
 
             SizedBox(height: 12),
             // temp
-            Text('$value°F', style: TextStyle(fontSize: 16)),
+            Text('${value}K', style: TextStyle(fontSize: 16)),
           ],
         ),
       ),

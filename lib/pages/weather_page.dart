@@ -1,14 +1,15 @@
 import 'dart:convert';
 import 'dart:ui';
 import 'package:flutter/material.dart';
-import 'package:weather_app/hourly_forcast_item.dart';
-import 'package:weather_app/additional_info_card.dart';
+import 'package:weather_app/utils/hourly_forcast_item.dart';
+import 'package:weather_app/utils/additional_info_card.dart';
 import 'package:http/http.dart' as http;
-import 'secrets.dart';
+import '../secrets.dart';
 import 'package:intl/intl.dart';
 
 class WeatherPage extends StatefulWidget {
-  const WeatherPage({super.key});
+  const WeatherPage({super.key, required this.cityName});
+  final String cityName;
 
   @override
   State<WeatherPage> createState() => WeatherPageState();
@@ -19,10 +20,9 @@ class WeatherPageState extends State<WeatherPage> {
   //URI: Uniform resourse Identifier
   Future<Map<String, dynamic>> getCurrentWeather() async {
     try {
-      final String cityName = 'Nagpur';
       final res = await http.get(
         Uri.parse(
-          "https://api.openweathermap.org/data/2.5/forecast?q=$cityName&APPID=$apiKey",
+          "https://api.openweathermap.org/data/2.5/forecast?q=${widget.cityName}&APPID=$apiKey",
         ),
       );
 
@@ -34,7 +34,7 @@ class WeatherPageState extends State<WeatherPage> {
 
       return data;
     } catch (e) {
-      throw 'An Unexpected Error Occured';
+      throw 'An Unexpected Error Occured\nEither You\'re OFFLINE \nor \nYou\'ve Entered WRONG CITY';
     }
   }
 
@@ -70,7 +70,12 @@ class WeatherPageState extends State<WeatherPage> {
           }
 
           if (snapshot.hasError) {
-            return Center(child: Text(snapshot.error.toString()));
+            return Center(
+              child: Text(
+                snapshot.error.toString(),
+                textAlign: TextAlign.center,
+              ),
+            );
           }
 
           final data = snapshot.data!;
@@ -86,6 +91,15 @@ class WeatherPageState extends State<WeatherPage> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
+                //TEXT
+                Padding(
+                  padding: const EdgeInsets.only(left: 8.0),
+                  child: Text(
+                    widget.cityName,
+                    style: TextStyle(fontSize: 25, color: Colors.blue),
+                  ),
+                ),
+
                 //CARD
                 SizedBox(
                   width: double.infinity,
