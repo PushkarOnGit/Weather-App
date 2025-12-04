@@ -5,6 +5,7 @@ import 'package:weather_app/hourly_forcast_item.dart';
 import 'package:weather_app/additional_info_card.dart';
 import 'package:http/http.dart' as http;
 import 'secrets.dart';
+import 'package:intl/intl.dart';
 
 class WeatherPage extends StatefulWidget {
   const WeatherPage({super.key});
@@ -14,6 +15,7 @@ class WeatherPage extends StatefulWidget {
 }
 
 class WeatherPageState extends State<WeatherPage> {
+  late Future<Map<String, dynamic>> weather;
   //URI: Uniform resourse Identifier
   Future<Map<String, dynamic>> getCurrentWeather() async {
     try {
@@ -37,16 +39,31 @@ class WeatherPageState extends State<WeatherPage> {
   }
 
   @override
+  void initState() {
+    super.initState();
+    weather = getCurrentWeather();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: Text('Weather App'),
         centerTitle: true,
-        actions: [IconButton(onPressed: () {}, icon: Icon(Icons.refresh))],
+        actions: [
+          IconButton(
+            onPressed: () {
+              setState(() {
+                weather = getCurrentWeather();
+              });
+            },
+            icon: Icon(Icons.refresh),
+          ),
+        ],
       ),
 
       body: FutureBuilder(
-        future: getCurrentWeather(),
+        future: weather,
         builder: (context, snapshot) {
           if (snapshot.connectionState == ConnectionState.waiting) {
             return Center(child: CircularProgressIndicator.adaptive());
@@ -112,47 +129,37 @@ class WeatherPageState extends State<WeatherPage> {
                 SizedBox(height: 20),
 
                 Text(
-                  'Weather Forecast',
+                  'Hourly Forecast',
                   style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
                 ),
 
                 SizedBox(height: 10),
-                SingleChildScrollView(
-                  scrollDirection: Axis.horizontal,
-                  child: Row(
-                    children: [
-                      HourlyForecastItem(
-                        time: '13:13',
-                        icon: Icons.cloud,
-                        value: '300',
-                      ),
 
-                      HourlyForecastItem(
-                        time: '13:13',
-                        icon: Icons.cloud,
-                        value: '300',
-                      ),
-
-                      HourlyForecastItem(
-                        time: '13:13',
-                        icon: Icons.cloud,
-                        value: '300',
-                      ),
-
-                      HourlyForecastItem(
-                        time: '13:13',
-                        icon: Icons.cloud,
-                        value: '300',
-                      ),
-
-                      HourlyForecastItem(
-                        time: '13:13',
-                        icon: Icons.cloud,
-                        value: '300',
-                      ),
-                    ],
+                SizedBox(
+                  height: 135,
+                  child: ListView.builder(
+                    scrollDirection: Axis.horizontal,
+                    itemCount: 5,
+                    itemBuilder: (context, index) {
+                      final time = DateTime.parse(
+                        data['list'][index + 1]['dt_txt'],
+                      );
+                      final finalTime = DateFormat.j().format(time);
+                      final value =
+                          data['list'][index + 1]['main']['temp'].toString();
+                      return HourlyForecastItem(
+                        icon:
+                            data['list'][index + 1]['weather'][0]['main'] ==
+                                    'Clear'
+                                ? Icons.wb_sunny_outlined
+                                : Icons.cloud_queue,
+                        time: finalTime.toString(),
+                        value: value,
+                      );
+                    },
                   ),
                 ),
+
                 SizedBox(height: 20),
                 Text(
                   'Additional Information',
