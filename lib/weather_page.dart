@@ -72,7 +72,22 @@ class WeatherPageState extends State<WeatherPage> {
                 ],
               ),
             ),
+            SizedBox(height: 20),
+            Text(
+              'Additional Information',
+              style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+            ),
 
+            SizedBox(height: 10),
+
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              children: [
+                AdditionalInfoCard(),
+                AdditionalInfoCard(),
+                AdditionalInfoCard(),
+              ],
+            ),
             //
           ],
         ),
@@ -110,6 +125,29 @@ class HourlyForecastItem extends StatelessWidget {
           ],
         ),
       ),
+    );
+  }
+}
+
+class AdditionalInfoCard extends StatelessWidget {
+  const AdditionalInfoCard({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      children: [
+        //icon
+        Icon(Icons.water_drop_rounded, size: 60),
+        SizedBox(height: 5),
+        //Parameter name
+        Text(
+          'Humidity',
+          style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+        ),
+
+        //value
+        Text('94', style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold)),
+      ],
     );
   }
 }
