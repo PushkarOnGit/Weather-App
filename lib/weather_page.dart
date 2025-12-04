@@ -1,5 +1,7 @@
 import 'dart:ui';
 import 'package:flutter/material.dart';
+import 'package:weather_app/hourly_forcast_item.dart';
+import 'package:weather_app/additional_info_card.dart';
 
 class WeatherPage extends StatefulWidget {
   const WeatherPage({super.key});
@@ -39,10 +41,8 @@ class WeatherPageState extends State<WeatherPage> {
                       child: Column(
                         children: [
                           Text('300°F', style: TextStyle(fontSize: 32)),
-
                           Icon(Icons.cloud, size: 64),
                           SizedBox(height: 14),
-
                           Text('Rain', style: TextStyle(fontSize: 20)),
                         ],
                       ),
@@ -64,11 +64,35 @@ class WeatherPageState extends State<WeatherPage> {
               scrollDirection: Axis.horizontal,
               child: Row(
                 children: [
-                  HourlyForecastItem(),
-                  HourlyForecastItem(),
-                  HourlyForecastItem(),
-                  HourlyForecastItem(),
-                  HourlyForecastItem(),
+                  HourlyForecastItem(
+                    time: '13:13',
+                    icon: Icons.cloud,
+                    value: '300',
+                  ),
+
+                  HourlyForecastItem(
+                    time: '13:13',
+                    icon: Icons.cloud,
+                    value: '300',
+                  ),
+
+                  HourlyForecastItem(
+                    time: '13:13',
+                    icon: Icons.cloud,
+                    value: '300',
+                  ),
+
+                  HourlyForecastItem(
+                    time: '13:13',
+                    icon: Icons.cloud,
+                    value: '300',
+                  ),
+
+                  HourlyForecastItem(
+                    time: '13:13',
+                    icon: Icons.cloud,
+                    value: '300',
+                  ),
                 ],
               ),
             ),
@@ -83,71 +107,29 @@ class WeatherPageState extends State<WeatherPage> {
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
-                AdditionalInfoCard(),
-                AdditionalInfoCard(),
-                AdditionalInfoCard(),
+                AdditionalInfoCard(
+                  icon: Icons.water_drop,
+                  label: 'Humidity',
+                  value: '01',
+                ),
+
+                AdditionalInfoCard(
+                  icon: Icons.air,
+                  label: 'Wind Speed',
+                  value: '01',
+                ),
+
+                AdditionalInfoCard(
+                  icon: Icons.beach_access,
+                  label: 'Pressure',
+                  value: '01',
+                ),
               ],
             ),
             //
           ],
         ),
       ),
-    );
-  }
-}
-
-class HourlyForecastItem extends StatelessWidget {
-  const HourlyForecastItem({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return Card(
-      elevation: 6,
-      child: Container(
-        width: 100,
-        padding: EdgeInsets.symmetric(vertical: 10, horizontal: 20),
-        child: Column(
-          children: [
-            // time
-            Text(
-              "13:13",
-              style: TextStyle(fontSize: 17, fontWeight: FontWeight.bold),
-            ),
-
-            SizedBox(height: 5),
-
-            // cloud
-            Icon(Icons.cloud, size: 32),
-
-            SizedBox(height: 12),
-            // temp
-            Text('300°F', style: TextStyle(fontSize: 16)),
-          ],
-        ),
-      ),
-    );
-  }
-}
-
-class AdditionalInfoCard extends StatelessWidget {
-  const AdditionalInfoCard({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return Column(
-      children: [
-        //icon
-        Icon(Icons.water_drop_rounded, size: 60),
-        SizedBox(height: 5),
-        //Parameter name
-        Text(
-          'Humidity',
-          style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
-        ),
-
-        //value
-        Text('94', style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold)),
-      ],
     );
   }
 }
